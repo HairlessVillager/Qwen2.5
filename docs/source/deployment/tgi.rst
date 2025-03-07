@@ -32,7 +32,7 @@ Deploy Qwen2.5 with TGI
    model=Qwen/Qwen2.5-7B-Instruct
    volume=$PWD/data # share a volume with the Docker container to avoid downloading weights every run
 
-   docker run --gpus all --shm-size 1g -p 8080:80 -v $volume:/data ghcr.io/huggingface/text-generation-inference:2.0 --model-id $model
+   docker run --gpus all --shm-size 1g -p 8080:80 -v $volume:/data ghcr.io/huggingface/text-generation-inference:latest --model-id $model
 
 
 Using TGI API
@@ -113,7 +113,7 @@ The following shows the command to start TGI with Qwen2.5-7B-Instruct-GPTQ-Int4:
    model=Qwen/Qwen2.5-7B-Instruct-GPTQ-Int4
    volume=$PWD/data # share a volume with the Docker container to avoid downloading weights every run
 
-   docker run --gpus all --shm-size 1g -p 8080:80 -v $volume:/data ghcr.io/huggingface/text-generation-inference:2.0 --model-id $model --quantize gptq
+   docker run --gpus all --shm-size 1g -p 8080:80 -v $volume:/data ghcr.io/huggingface/text-generation-inference:latest --model-id $model --quantize gptq
 
 
 If the model is quantized with AWQ, e.g. Qwen/Qwen2.5-7B-Instruct-AWQ, please use ``--quantize awq``.
@@ -127,7 +127,7 @@ EETQ on the other side is not data dependent and can be used with any model. Not
    model=Qwen/Qwen2.5-7B-Instruct
    volume=$PWD/data # share a volume with the Docker container to avoid downloading weights every run
 
-   docker run --gpus all --shm-size 1g -p 8080:80 -v $volume:/data ghcr.io/huggingface/text-generation-inference:2.0 --model-id $model --quantize eetq
+   docker run --gpus all --shm-size 1g -p 8080:80 -v $volume:/data ghcr.io/huggingface/text-generation-inference:latest --model-id $model --quantize eetq
 
 
 
@@ -141,7 +141,7 @@ Use the ``--num-shard`` flag to specify the number of accelerators. Please also 
    model=Qwen/Qwen2.5-7B-Instruct
    volume=$PWD/data # share a volume with the Docker container to avoid downloading weights every run
 
-   docker run --gpus all --shm-size 1g -p 8080:80 -v $volume:/data ghcr.io/huggingface/text-generation-inference:2.0 --model-id $model --num-shard 2
+   docker run --gpus all --shm-size 1g -p 8080:80 -v $volume:/data ghcr.io/huggingface/text-generation-inference:latest --model-id $model --num-shard 2
 
 
 Speculative Decoding
@@ -155,7 +155,7 @@ Speculative decoding can reduce the time per token by speculating on the next to
    model=Qwen/Qwen2.5-7B-Instruct
    volume=$PWD/data # share a volume with the Docker container to avoid downloading weights every run
 
-   docker run --gpus all --shm-size 1g -p 8080:80 -v $volume:/data ghcr.io/huggingface/text-generation-inference:2.0 --model-id $model --speculate 2
+   docker run --gpus all --shm-size 1g -p 8080:80 -v $volume:/data ghcr.io/huggingface/text-generation-inference:latest --model-id $model --speculate 2
 
 
 The overall performance of speculative decoding highly depends on the type of task. It works best for code or highly repetitive text.
@@ -184,4 +184,4 @@ Qwen2.5 supports long context lengths, so carefully choose the values for ``--ma
    model=Qwen/Qwen2.5-7B-Instruct
    volume=$PWD/data # share a volume with the Docker container to avoid downloading weights every run
 
-   docker run --gpus all --shm-size 1g -p 8080:80 -v $volume:/data ghcr.io/huggingface/text-generation-inference:2.0 --model-id $model --max-batch-prefill-tokens 4096 --max-total-tokens 4096 --max-input-tokens 2048
+   docker run --gpus all --shm-size 1g -p 8080:80 -v $volume:/data ghcr.io/huggingface/text-generation-inference:latest --model-id $model --max-batch-prefill-tokens 4096 --max-total-tokens 4096 --max-input-tokens 2048
